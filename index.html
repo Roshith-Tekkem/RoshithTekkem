@@ -269,6 +269,25 @@
 			</nav>
 		</header>
 		<section class="hero" id="about" data-aos="fade-up" >
+			<audio id="background-audio" autoplay loop>
+			  <source src="song.mp3" type="audio/mpeg" />
+			</audio>
+			<button id="audio-toggle" style="
+			  position: fixed;
+			  bottom: 20px;
+			  right: 20px;
+			  background-color: #1abc9c;
+			  border: none;
+			  color: white;
+			  padding: 10px 15px;
+			  border-radius: 50%;
+			  cursor: pointer;
+			  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+			  font-size: 16px;
+			  z-index: 9999;
+			">
+			  ⏸
+			</button>
 			<h1 class="font"><span id="typed-text"></span></h1>
 			<p class="description" id="experience-text"></p>
 		</section>
@@ -584,6 +603,17 @@
 				document.getElementById("age").textContent = age;
 			}
 			document.addEventListener("DOMContentLoaded", calculateAge);
+			const audio = document.getElementById("background-audio");
+			const toggleBtn = document.getElementById("audio-toggle");
+			toggleBtn.addEventListener("click", () => {
+			  if (audio.paused) {
+			    audio.play();
+			    toggleBtn.textContent = "⏸"; // Pause icon
+			  } else {
+			    audio.pause();
+			    toggleBtn.textContent = "▶️"; // Play icon
+			  }
+			});
 		</script>
 		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 		<script>
