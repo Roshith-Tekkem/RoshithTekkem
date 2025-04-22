@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 	<head>
 		<meta charset="UTF-8" />
 		<title>Roshith Tekkem | Portfolio</title>
@@ -251,6 +252,19 @@
 			.cv-button:hover {
 			  background-color: #2563eb;
 			}
+			.button{
+			  position: fixed;
+			  bottom: 20px;
+			  right: 20px;
+			  border: none;
+			  color: white;
+			  padding: 8px 7px;
+			  border-radius: 50%;
+			  cursor: pointer;
+			  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+			  font-size: 16px;
+			  z-index: 9999;
+			}
 		</style>
 	</head>
 	<body>
@@ -272,21 +286,19 @@
 			<audio id="background-audio" autoplay loop>
 			  <source src="song.mp3" type="audio/mpeg" />
 			</audio>
-			<button id="audio-toggle" style="
-			  position: fixed;
-			  bottom: 20px;
-			  right: 20px;
-			  background-color: #1abc9c;
-			  border: none;
-			  color: white;
-			  padding: 10px 15px;
-			  border-radius: 50%;
-			  cursor: pointer;
-			  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-			  font-size: 16px;
-			  z-index: 9999;
-			">
-			  ⏸
+			<button id="audio-toggle" class="button">
+			  <span id="icon-play">
+			    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-up-fill" viewBox="0 0 16 16">
+			      <path d="M11.536 14.01A8.47 8.47 0 0 0 14.026 8a8.47 8.47 0 0 0-2.49-6.01l-.708.707A7.48 7.48 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303z"/>
+			      <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.48 5.48 0 0 1 11.025 8a5.48 5.48 0 0 1-1.61 3.89z"/>
+			      <path d="M8.707 11.182A4.5 4.5 0 0 0 10.025 8a4.5 4.5 0 0 0-1.318-3.182L8 5.525A3.5 3.5 0 0 1 9.025 8 3.5 3.5 0 0 1 8 10.475zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06"/>
+			    </svg>
+			  </span>
+			  <span id="icon-pause" class="d-none">
+			    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-mute-fill" viewBox="0 0 16 16">
+			      <path d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06m7.137 2.096a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0"/>
+			    </svg>
+			  </span>
 			</button>
 			<h1 class="font"><span id="typed-text"></span></h1>
 			<p class="description" id="experience-text"></p>
@@ -605,13 +617,18 @@
 			document.addEventListener("DOMContentLoaded", calculateAge);
 			const audio = document.getElementById("background-audio");
 			const toggleBtn = document.getElementById("audio-toggle");
+			const iconPlay = document.getElementById("icon-play");
+			const iconPause = document.getElementById("icon-pause");
+			audio.volume = 0.3;
 			toggleBtn.addEventListener("click", () => {
 			  if (audio.paused) {
 			    audio.play();
-			    toggleBtn.textContent = "⏸"; // Pause icon
+			    iconPlay.classList.add("d-none");
+			    iconPause.classList.remove("d-none");
 			  } else {
 			    audio.pause();
-			    toggleBtn.textContent = "▶️"; // Play icon
+			    iconPause.classList.add("d-none");
+			    iconPlay.classList.remove("d-none");
 			  }
 			});
 		</script>
